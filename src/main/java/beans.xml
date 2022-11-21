@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 <!--  	<bean id="p1" class="org.zabalburu.springdi.modelo.Producto"></bean>
  	
@@ -27,6 +26,7 @@
 		<constructor-arg index="0" value="2"></constructor-arg>
 		<constructor-arg index="1" value="Categoría 2"></constructor-arg>
 	</bean>-->
+	<context:property-placeholder location="org/zabalburu/springdi/props/conexion.properties"/>
 	
 	<bean id="productoList" class="org.zabalburu.springdi.dao.ProductoList">
 	</bean>
@@ -35,10 +35,10 @@
  		<property name="dao" ref="productoBBDD"></property>
  	</bean>
  	<bean id="conexion" class="org.zabalburu.springdi.util.Conexion">
- 		<constructor-arg name="clase" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></constructor-arg>
- 		<property name="url" value="jdbc:sqlserver://localhost:2000;databaseName=Northwind;TrustServerCertificate=True;"></property>
- 		<property name="usuario" value="sa"></property>
- 		<property name="password" value="tiger"></property>
+ 		<constructor-arg name="clase" value="${clase}"></constructor-arg>
+ 		<property name="url" value="${url}"></property>
+ 		<property name="usuario" value="${usuario}"></property>
+ 		<property name="password" value="${password}"></property>
  	</bean>
  	<bean id="productoBBDD" class="org.zabalburu.springdi.dao.ProductoBBDD">
  		<constructor-arg name="conn" ref="conexion" ></constructor-arg>
